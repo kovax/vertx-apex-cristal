@@ -1,0 +1,40 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'project-report'
+
+group = 'org.cristalise'
+version = '0.1-SNAPSHOT'
+
+description = "Cristal none-blocking kernel"
+
+buildDir = 'target'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// In this section declare where to find the dependencies
+repositories {
+    mavenLocal()
+    mavenCentral() //equivalent to 'maven { url "http://repo.maven.apache.org/maven2" }'
+
+	maven { url "http://dev.cccs.uwe.ac.uk:8081/nexus/content/repositories/releases" }
+	maven { url "http://dev.cccs.uwe.ac.uk:8081/nexus/content/repositories/snapshots" }
+	maven { url "http://dev.cccs.uwe.ac.uk:8081/nexus/content/repositories/public" }
+
+    maven { url = 'http://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+//In this section declare the dependencies of production and test code
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.7'
+    compile 'io.vertx:vertx-apex:3.0.0-SNAPSHOT'
+	compile(group: 'org.cristalise', name: 'cristalise-kernel', version:'3.1-J8-SNAPSHOT') { force = true }
+	compile group: 'org.cristalise', name: 'cristalise-xmldb',  version:'1.0'
+    compile group: 'org.cristalise', name: 'cristalise-ldap',   version:'3.1-SNAPSHOT'
+    compile group: 'org.cristalise', name: 'cristalise-dev',    version:'3.1-SNAPSHOT'
+    
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'junit:junit:4.11'
+    testCompile 'io.vertx:vertx-unit:3.0.0-SNAPSHOT'
+}

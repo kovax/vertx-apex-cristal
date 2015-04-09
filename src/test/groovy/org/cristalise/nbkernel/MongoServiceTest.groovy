@@ -29,7 +29,7 @@ class MongoServiceTest {
                 Vertx.vertx().close()
             }
         }
-        
+
         runner.accept(Vertx.vertx())
     }
 }

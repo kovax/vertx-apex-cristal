@@ -14,6 +14,7 @@ public class Gateway {
         deployService("service:io.vertx.mongo-service", config, startResult);
     }
 
+
     public static MongoService getMongoProxy() {
         return MongoService.createEventBusProxy(Vertx.vertx(), "vertx.mongo");
     }
@@ -33,5 +34,4 @@ public class Gateway {
             }
         });
     }
-
 }

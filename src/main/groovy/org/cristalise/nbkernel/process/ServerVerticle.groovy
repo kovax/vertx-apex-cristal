@@ -37,7 +37,7 @@ public class ServerVerticle extends AbstractVerticle {
         config.put("connection_string", "mongodb://localhost:27018");
         config.put("db_name", "cise-app-test");
         return config;
-      }
+    }
 
     @Override
     public void stop() {
@@ -49,7 +49,7 @@ public class ServerVerticle extends AbstractVerticle {
 
         Consumer<Vertx> runner = {
             try {
-                Vertx.vertx().deployVerticle(new ServerVerticle()) {  AsyncResult<String> result ->
+                Vertx.vertx().deployVerticle(new ServerVerticle()) { AsyncResult<String> result ->
                     if (result.succeeded()) {
                         log.info("CRISTAL-iSE Server was started");
                     }
@@ -72,6 +72,7 @@ public class ServerVerticle extends AbstractVerticle {
                 }
                 else {
                     it.cause().printStackTrace();
+                    Vertx.vertx().close()
                 }
             }
         }

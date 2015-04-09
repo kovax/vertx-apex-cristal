@@ -1,39 +1,20 @@
 package org.cristalise.nbkernel.lookup;
 
-import groovy.transform.CompileStatic;
-import groovy.util.logging.Slf4j;
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Future;
-import io.vertx.core.Handler;
-import io.vertx.core.Vertx;
-import io.vertx.core.VertxOptions;
-import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
-import io.vertx.ext.apex.Router;
-import io.vertx.ext.apex.RoutingContext;
-import io.vertx.ext.apex.handler.BodyHandler;
-import io.vertx.ext.mongo.MongoService;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
-
-import org.cristalise.nbkernel.process.Gateway;
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+import io.vertx.core.Vertx
+import io.vertx.core.http.HttpServerResponse
+import io.vertx.ext.apex.Router
+import io.vertx.ext.apex.RoutingContext
+import io.vertx.ext.apex.handler.BodyHandler
 
 @CompileStatic
 @Slf4j
-class RestRouter {
-    
-    private MongoService mongo = null
+public class RestRouter {
 
-    RestRouter() {
-    }
+    RestRouter() {}
 
     public Router init() {
-        mongo = Gateway.getMongoServiceProxy(null)
- 
 		Router router = Router.router(Vertx.vertx());
 
         router.route().handler(BodyHandler.create())
